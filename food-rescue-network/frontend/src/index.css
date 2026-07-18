@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+    background-image: radial-gradient(rgba(18,53,36,0.05) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  h1, h2, h3, h4 { @apply font-display; }
+  ::selection { background: #E3A72E; color: #123524; }
+  :focus-visible { outline: 2px solid #E3A72E; outline-offset: 2px; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-forest text-paper px-6 py-3 font-semibold
+           hover:bg-forest-light transition-colors shadow-soft;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold text-forest-dark px-6 py-3 font-semibold
+           hover:bg-gold-light transition-colors shadow-soft;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-forest text-forest px-6 py-3 font-semibold
+           hover:bg-forest hover:text-paper transition-colors;
+  }
+  .card {
+    @apply bg-white/70 backdrop-blur-sm rounded-3xl border border-forest/10 shadow-soft;
+  }
+  .input {
+    @apply w-full rounded-xl border border-forest/20 bg-white/80 px-4 py-2.5 text-ink placeholder:text-ink/40
+           focus:border-gold focus:ring-2 focus:ring-gold/30 outline-none transition;
+  }
+  .label { @apply block text-sm font-semibold text-forest/80 mb-1.5; }
+  .eyebrow { @apply text-xs font-mono uppercase tracking-[0.2em] text-clay font-semibold; }
+}
