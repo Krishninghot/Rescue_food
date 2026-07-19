@@ -1,0 +1,9 @@
+# Environment files contain local secrets and must not be committed.
+.env
+.env.*
+!.env.example
+
+# Generated files
+node_modules/
+dist/
+*.tsbuildinfo
