@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const api = axios.create({ baseURL: "/api" });
+// On the single Render deployment this remains a relative URL, so the
+// frontend and API always use the same domain.  VITE_API_URL is optional for
+// a future standalone frontend deployment.
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "/api",
+});
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("frn_token");
