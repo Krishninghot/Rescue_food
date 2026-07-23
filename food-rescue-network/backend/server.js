@@ -45,6 +45,17 @@ app.use("/api/ratings", ratingRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/ai", aiRoutes);
 
+// Production: Render serves the React build and the API from one domain.
+// The Vite development server remains responsible for the frontend locally.
+const frontendDist = path.join(__dirname, "../frontend/dist");
+app.use(express.static(frontendDist));
+
+// Let React Router handle client-side routes such as /login and dashboards.
+app.get("*", (req, res, next) => {
+  if (req.path.startsWith("/api")) return next();
+  res.sendFile(path.join(frontendDist, "index.html"));
+});
+
 app.use(notFound);
 app.use(errorHandler);
 
